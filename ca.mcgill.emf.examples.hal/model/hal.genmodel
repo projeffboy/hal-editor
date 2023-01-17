@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel"
+    modelDirectory="/ca.mcgill.emf.examples.hal/src" creationIcons="false"
+    editDirectory="/ca.mcgill.emf.examples.hal.edit/src" editorDirectory="/ca.mcgill.emf.examples.hal.editor/src"
+    modelPluginID="ca.mcgill.emf.examples.hal" modelName="Hal" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
+    codeFormatting="true" importerID="org.eclipse.emf.importer.ecore" complianceLevel="17.0"
+    copyrightFields="false" operationReflection="true" importOrganizing="true">
+  <foreignModel>hal.ecore</foreignModel>
+  <testsDirectory xsi:nil="true"/>
+  <genPackages prefix="Hal" basePackage="ca.mcgill.emf.examples" resource="XMI" disposableProviderFactory="true"
+      ecorePackage="hal.ecore#/">
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="hal.ecore#//ComparisonOperator">
+      <genEnumLiterals ecoreEnumLiteral="hal.ecore#//ComparisonOperator/Equal"/>
+      <genEnumLiterals ecoreEnumLiteral="hal.ecore#//ComparisonOperator/GreaterThan"/>
+      <genEnumLiterals ecoreEnumLiteral="hal.ecore#//ComparisonOperator/SmallerThan"/>
+      <genEnumLiterals ecoreEnumLiteral="hal.ecore#//ComparisonOperator/GreaterThanOrEqual"/>
+      <genEnumLiterals ecoreEnumLiteral="hal.ecore#//ComparisonOperator/SmallerThanOrEqual"/>
+      <genEnumLiterals ecoreEnumLiteral="hal.ecore#//ComparisonOperator/NotEqual"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="hal.ecore#//BinaryLogicalOperator">
+      <genEnumLiterals ecoreEnumLiteral="hal.ecore#//BinaryLogicalOperator/AND"/>
+      <genEnumLiterals ecoreEnumLiteral="hal.ecore#//BinaryLogicalOperator/OR"/>
+    </genEnums>
+    <genClasses ecoreClass="hal.ecore#//Device">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute hal.ecore#//Device/name"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference hal.ecore#//Device/room"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute hal.ecore#//Device/active"/>
+    </genClasses>
+    <genClasses ecoreClass="hal.ecore#//Sensor">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference hal.ecore#//Sensor/readings"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute hal.ecore#//Sensor/measurementPeriodInSeconds"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference hal.ecore#//Sensor/terms"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference hal.ecore#//Sensor/sensorType"/>
+    </genClasses>
+    <genClasses ecoreClass="hal.ecore#//Actuator">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference hal.ecore#//Actuator/actuatorType"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference hal.ecore#//Actuator/issuedCommands"/>
+    </genClasses>
+    <genClasses ecoreClass="hal.ecore#//Room">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute hal.ecore#//Room/name"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference hal.ecore#//Room/devices"/>
+    </genClasses>
+    <genClasses ecoreClass="hal.ecore#//Reading">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute hal.ecore#//Reading/measurement"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute hal.ecore#//Reading/timestamp"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference hal.ecore#//Reading/sensor"/>
+    </genClasses>
+    <genClasses ecoreClass="hal.ecore#//Command">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute hal.ecore#//Command/name"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference hal.ecore#//Command/actions"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference hal.ecore#//Command/issuedCommands"/>
+    </genClasses>
+    <genClasses ecoreClass="hal.ecore#//ActivityLog">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute hal.ecore#//ActivityLog/timestamp"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference hal.ecore#//ActivityLog/readings"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference hal.ecore#//ActivityLog/issuedCommands"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference hal.ecore#//ActivityLog/triggeredRules"/>
+    </genClasses>
+    <genClasses ecoreClass="hal.ecore#//IssuedCommand">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute hal.ecore#//IssuedCommand/timestamp"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference hal.ecore#//IssuedCommand/command"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference hal.ecore#//IssuedCommand/actuator"/>
+    </genClasses>
+    <genClasses ecoreClass="hal.ecore#//Action">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference hal.ecore#//Action/commands"/>
+    </genClasses>
+    <genClasses ecoreClass="hal.ecore#//Home">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute hal.ecore#//Home/address"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference hal.ecore#//Home/rooms"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference hal.ecore#//Home/rules"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference hal.ecore#//Home/activityLog"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference hal.ecore#//Home/deviceTypes"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference hal.ecore#//Home/devices"/>
+    </genClasses>
+    <genClasses ecoreClass="hal.ecore#//Rule">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute hal.ecore#//Rule/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute hal.ecore#//Rule/active"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute hal.ecore#//Rule/password"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference hal.ecore#//Rule/precondition"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference hal.ecore#//Rule/action"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference hal.ecore#//Rule/triggeredRules"/>
+    </genClasses>
+    <genClasses ecoreClass="hal.ecore#//Precondition">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference hal.ecore#//Precondition/expressions"/>
+    </genClasses>
+    <genClasses ecoreClass="hal.ecore#//Expression"/>
+    <genClasses ecoreClass="hal.ecore#//NotExpression">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference hal.ecore#//NotExpression/right"/>
+    </genClasses>
+    <genClasses ecoreClass="hal.ecore#//BinaryExpression">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute hal.ecore#//BinaryExpression/operator"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference hal.ecore#//BinaryExpression/left"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference hal.ecore#//BinaryExpression/right"/>
+    </genClasses>
+    <genClasses ecoreClass="hal.ecore#//TriggeredRule">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute hal.ecore#//TriggeredRule/timestamp"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference hal.ecore#//TriggeredRule/rule"/>
+    </genClasses>
+    <genClasses ecoreClass="hal.ecore#//Term">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute hal.ecore#//Term/comparisonOperator"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute hal.ecore#//Term/rhsValue"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference hal.ecore#//Term/lhsSensor"/>
+    </genClasses>
+    <genClasses ecoreClass="hal.ecore#//SensorType">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference hal.ecore#//SensorType/sensors"/>
+    </genClasses>
+    <genClasses ecoreClass="hal.ecore#//ActuatorType">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference hal.ecore#//ActuatorType/actuators"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference hal.ecore#//ActuatorType/commands"/>
+    </genClasses>
+    <genClasses ecoreClass="hal.ecore#//DeviceType">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute hal.ecore#//DeviceType/type"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>
